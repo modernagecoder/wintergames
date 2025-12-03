@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Winter Games 2025 | Student Transport Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0F4C81;
+            --secondary: #53B0AE;
+            --accent: #FF6B6B;
+            --glass: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        /* Snowfall Background Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #add8e6;
+            font-size: 1em;
+            user-select: none;
+            z-index: 0;
+            animation-name: snowfall;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 16px 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0 0 30px 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+        }
+
+        .event-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            margin-bottom: 12px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 8px;
+            border-radius: 12px;
+            min-width: 60px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .countdown-number {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 700;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: clamp(0.6rem, 2vw, 0.75rem);
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* Search Bar - Sticky on mobile */
+        .search-container {
+            max-width: 600px;
+            margin: -40px auto 24px;
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+            padding: 0 16px;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+        }
+
+        .search-box i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid white;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 12px;
+        }
+
+        .card-header i {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-right: 12px;
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .card-header h3 {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--primary);
+        }
+
+        /* Explanation Box */
+        .explanation-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .explanation-title {
+            font-weight: 700;
+            color: #d35400;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .explanation-box p {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        .explanation-box ul {
+            margin-top: 10px;
+            margin-left: 16px;
+            list-style-type: disc;
+        }
+
+        .explanation-box li {
+            margin-bottom: 8px;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        /* Destination Details */
+        .destination-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .dest-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+        }
+
+        .dest-icon {
+            min-width: 40px;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .dest-item strong {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .dest-item p {
+            font-size: clamp(0.8rem, 2.5vw, 0.85rem) !important;
+            color: #666;
+            word-break: break-word;
+        }
+
+        .dest-item a {
+            font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 4px;
+            padding: 4px 0;
+        }
+
+        /* Tabs - Horizontal scroll on mobile */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            flex: 1;
+            justify-content: center;
+            min-width: 140px;
+            min-height: 48px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(15, 76, 129, 0.3);
+        }
+
+        .tab-btn:active {
+            transform: scale(0.98);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20px;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--secondary), #e0e0e0);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .timeline-item:active {
+            transform: scale(0.99);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -36px;
+            top: 16px;
+            width: 28px;
+            height: 28px;
+            background: var(--secondary);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(83, 176, 174, 0.2);
+            z-index: 2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .time-badge {
+            background: #e3f2fd;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            word-break: break-word;
+        }
+
+        .address-text {
+            color: #666;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            margin-bottom: 8px;
+            line-height: 1.5;
+            word-break: break-word;
+            display: flex;
+            gap: 8px;
+        }
+
+        .address-text i {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .phone-display {
+            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            word-break: break-all;
+        }
+
+        /* Action Buttons - Full width on mobile */
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s, filter 0.2s;
+            min-height: 48px;
+        }
+
+        .action-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-map {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .btn-call {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        /* Vehicle Header inside Tab */
+        .vehicle-header {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .vehicle-info h4 {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 4px;
+        }
+
+        .vehicle-info p {
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            opacity: 0.9;
+        }
+
+        .vehicle-capacity {
+            background: rgba(255,255,255,0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            font-weight: 600;
+        }
+
+        /* Highlight Search Result */
+        .highlight {
+            border: 2px solid var(--accent) !important;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
+
+        /* Day Schedule List */
+        .schedule-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .schedule-list li {
+            margin-bottom: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .schedule-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .schedule-time {
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 55px;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        .schedule-event {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 16px;
+            color: #7f8c8d;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            margin-top: 32px;
+        }
+
+        footer p:last-child {
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            margin-top: 6px;
+        }
+
+        /* ========== RESPONSIVE BREAKPOINTS ========== */
+        
+        /* Small phones */
+        @media (max-width: 360px) {
+            .container {
+                padding: 12px;
+            }
+            
+            header {
+                padding: 30px 12px 40px;
+            }
+            
+            .countdown {
+                gap: 6px;
+            }
+            
+            .countdown-item {
+                min-width: 50px;
+                padding: 8px 6px;
+            }
+            
+            .tab-btn {
+                min-width: 120px;
+                padding: 12px 14px;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-marker {
+                left: -32px;
+                width: 24px;
+                height: 24px;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Tablets and up */
+        @media (min-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            
+            header {
+                padding: 50px 24px 60px;
+                border-radius: 0 0 40px 40px;
+            }
+            
+            .search-container {
+                margin-top: -50px;
+                position: relative;
+                top: auto;
+            }
+            
+            .countdown {
+                gap: 16px;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 12px 10px;
+            }
+            
+            .info-card {
+                padding: 24px;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline-marker {
+                left: -42px;
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+            
+            .timeline-item {
+                padding: 20px;
+            }
+            
+            .timeline-item:hover {
+                transform: translateX(5px);
+                border-left: 4px solid var(--secondary);
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 992px) {
+            .dashboard {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 30px;
+            }
+            
+            aside {
+                position: sticky;
+                top: 24px;
+                height: fit-content;
+            }
+            
+            .search-container {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .dashboard {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+
+        /* Safe area for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(16px, env(safe-area-inset-left));
+                padding-right: max(16px, env(safe-area-inset-right));
+            }
+            
+            footer {
+                padding-bottom: max(32px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .snowflake {
+                display: none;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .snowflake, .search-container, .action-row {
+                display: none !important;
+            }
+            
+            header {
+                background: #0F4C81 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Snowfall Background -->
+    <div id="snow-container"></div>
+
+    <header>
+        <div class="event-badge"><i class="fas fa-calendar-alt"></i> Sunday, 7th Dec 2025</div>
+        <h1>Winter Games 2025</h1>
+        <p>Interactive Transport & Event Guide</p>
+        
+        <div class="countdown" id="countdown">
+            <!-- JS will populate this -->
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search student name..." onkeyup="filterStudents()" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Logistics Explanation -->
+        <div class="explanation-box">
+            <div class="explanation-title"><i class="fas fa-info-circle"></i> Travel Logistics & Pickup Plan</div>
+            <p>
+                To ensure a timely arrival at <strong>eMall Turf by 09:50 AM</strong>, we have organized two dedicated routes. Please check which route your child falls under:
+            </p>
+            <ul>
+                <li><strong>Route 1 (South & City):</strong> Starts early from Hazra/Bhowanipore, collecting students through Ballygunge & Kasba, and finally sweeping through Lake Town & Bangur.</li>
+                <li><strong>Route 2 (Howrah & Central):</strong> Begins in Howrah, crossing the bridge to pick up students in Central Kolkata (MD Ali Park/Girish Park area).</li>
+            </ul>
+            <p style="margin-top:12px; font-weight:600; color: #e67e22;">
+                ⏰ Please be ready 5 minutes before your scheduled time!
+            </p>
+        </div>
+
+        <div class="dashboard">
+            <!-- Sidebar: Event Details -->
+            <aside>
+                <!-- Key Locations -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Event Locations</h3>
+                    </div>
+                    <div class="destination-grid">
+                        <div class="dest-item">
+                            <div class="dest-icon"><i class="fas fa-flag-checkered"></i></div>
+                            <div>
+                                <strong>The Arena</strong>
+                                <p>eMall Turf, Esplanade</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=eMall+Turf+Esplanade+Kolkata" target="_blank" rel="noopener">View on Map →</a>
+                            </div>
+                        </div>
+                        <div class="dest-item">
+                            <div class="dest-icon"><i class="fas fa-pizza-slice"></i></div>
+                            <div>
+                                <strong>Lunch Party (2 PM)</strong>
+                                <p>Domino's, Girish Park</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Dominos+Pizza+Girish+Park+Kolkata" target="_blank" rel="noopener">View on Map →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Timeline -->
+                <div class="info-card">
+                    <div class="card-header">
+                        <i class="fas fa-clock"></i>
+                        <h3>Day Schedule</h3>
+                    </div>
+                    <ul class="schedule-list">
+                        <li>
+                            <span class="schedule-time">09:50</span>
+                            <span class="schedule-event">Arrival at eMall Turf</span>
+                        </li>
+                        <li>
+                            <span class="schedule-time">10:00</span>
+                            <span class="schedule-event">Games Begin! 🏆</span>
+                        </li>
+                        <li>
+                            <span class="schedule-time">14:00</span>
+                            <span class="schedule-event">Lunch at Domino's 🍕</span>
+                        </li>
+                        <li>
+                            <span class="schedule-time">15:30</span>
+                            <span class="schedule-event">Return Journey 🏠</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content: Routes -->
+            <main>
+                <div class="tabs" role="tablist">
+                    <button class="tab-btn active" onclick="openTab('route1')" role="tab" aria-selected="true" aria-controls="route1">
+                        <i class="fas fa-bus"></i> South & City
+                    </button>
+                    <button class="tab-btn" onclick="openTab('route2')" role="tab" aria-selected="false" aria-controls="route2">
+                        <i class="fas fa-shuttle-van"></i> Howrah
+                    </button>
+                </div>
+
+                <!-- Route 1 Content -->
+                <div id="route1" class="tab-content active" role="tabpanel">
+                    <div class="vehicle-header">
+                        <div class="vehicle-info">
+                            <h4>Vehicle 1: Force Traveller</h4>
+                            <p>Driver Contact: Check Group</p>
+                        </div>
+                        <div class="vehicle-capacity">16 Seater</div>
+                    </div>
+
+                    <div class="timeline" id="timeline-route1">
+                        <!-- Items injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Route 2 Content -->
+                <div id="route2" class="tab-content" role="tabpanel">
+                    <div class="vehicle-header" style="background: linear-gradient(to right, #11998e, #38ef7d);">
+                        <div class="vehicle-info">
+                            <h4>Vehicle 2: Innova</h4>
+                            <p>Driver Contact: Check Group</p>
+                        </div>
+                        <div class="vehicle-capacity">8 Seater</div>
+                    </div>
+
+                    <div class="timeline" id="timeline-route2">
+                        <!-- Items injected by JS -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>Winter Games 2025 with modern age coders</p>
+        <p>Made with ❤️ for the students</p>
+    </footer>
+
+    <script>
+        // --- DATA ---
+        const route1Data = [
+            { time: "07:25 AM", name: "Harshal Shyamsukha", address: "3, Nandalal Jew road, Neelkanth building, 109/25, Hazra Road, Kolkata 700026", phone: "9883357555 / 7978866341" },
+            { time: "07:30 AM", name: "Samarth Goel", address: "10, Suhasini Ganguly Sarani, Patuapara, Bhowanipore, Kolkata-25", phone: "9330498801" },
+            { time: "07:35 AM", name: "Dhairya Sethia", address: "8 Ashutosh Mukherjee Road, Bhowanipore, Kolkata-20", phone: "9830344511" },
+            { time: "07:40 AM", name: "Nikit Goyal", address: "82B, Sambhunath Pandit Street, Anand Building, Kolkata-20", phone: "9830508734" },
+            { time: "07:50 AM", name: "Anvay Surana", address: "57M Ballygunge Circular Road, 700019", phone: "8981412111" },
+            { time: "07:55 AM", name: "Aryansh Jajoo", address: "Orbit Sky Garden, 12C, Ballygunge Bondel Road, 700019", phone: "9830064328" },
+            { time: "08:00 AM", name: "Krish Shroff", address: "Urban Kutir, Dover Terrace, Ballygunge, Kolkata-19", phone: "9836573154" },
+            { time: "08:05 AM", name: "Aditya Kedia", address: "Gurusaday Rd, Mainland China Lane", phone: "9836439009" },
+            { time: "08:15 AM", name: "Ayaan Zahir", address: "1B Natore Park, 1st Road, Indraprastha Apts, Kolkata-39", phone: "8240077327" },
+            { time: "08:20 AM", name: "Purab Nankani", address: "178/2/2 B.B. Chaterjee Road, Kasba Rathtala, 700042", phone: "9831228719" },
+            { time: "08:40 AM", name: "Shaarav Wadhwa", address: "Prasad Exotica, Flat 6B, Block 3, 71/3 Canal Circular Rd, 700054", phone: "9831812595" },
+            { time: "08:40 AM", name: "Devesh Jhawar", address: "Prasad Exotica, Flat 6B, Block 3, 71/3 Canal Circular Rd, 700054", phone: "8910602949" },
+            { time: "09:00 AM", name: "Vivaan Madhogaria", address: "P31 Block B, Lake Town, Opp. Mansa Mandir, Kolkata-89", phone: "9748062855" },
+            { time: "09:05 AM", name: "Tanish Dalmia", address: "136 Jessore Road, Avani Oxford, Blk 4, Flat 4L, Lake Town", phone: "9836215987" },
+            { time: "09:10 AM", name: "Aarav Gupta", address: "Bangur Avenue, Block A, 312, Kolkata-55", phone: "7980719654" },
+            { time: "09:10 AM", name: "Krishang Todi", address: "148 Bangur Avenue, Block A, 4th Floor, Shweta Apt", phone: "9836650263" },
+            { time: "09:20 AM", name: "Manav Khemka", address: "Space Town, Block 3, Flat 2C, VIP Haldiram, Kolkata-52", phone: "9903398363" }
+        ];
+
+        const route2Data = [
+            { time: "08:15 AM", name: "Navoneer Bhattacharyya", address: "Dreamland Co-op, Shailen Manna Sarani, Ichapur, Howrah-04", phone: "7715059708" },
+            { time: "08:35 AM", name: "Vihaan Tekriwal", address: "24/1 Onkarmal Jetia Rd, Shantikunj Apt, Howrah-03", phone: "9836301932" },
+            { time: "08:50 AM", name: "Aayush Daga", address: "74 Panchanantala Road, beside SBI Bank, Howrah-01", phone: "7877436140" },
+            { time: "09:00 AM", name: "Harshit Agarwal", address: "523 GT Road South, Opp. Navabharat Cinema, Howrah-01", phone: "9874052888" },
+            { time: "09:00 AM", name: "Shlok Agarwal", address: "523 GT Road South, Opp. Navabharat Cinema, Howrah-01", phone: "9874052888" },
+            { time: "09:10 AM", name: "Tanush Garg", address: "14 Rameshwaram Malia 1st Bye Lane, Howrah-01", phone: "9007108935" },
+            { time: "09:35 AM", name: "Aarav Khemka", address: "5 Nawab Badruddin St, near Md. Ali Park, Kolkata-73", phone: "7439618388" },
+            { time: "09:40 AM", name: "Ishaan Singh", address: "17 Tara Chand Dutta Street, Pin-700073", phone: "9831190087" }
+        ];
+
+        // --- FUNCTIONS ---
+
+        function renderTimeline(data, elementId) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            
+            data.forEach((stop, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.setAttribute('data-name', stop.name.toLowerCase());
+                
+                const mapQuery = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(stop.address)}`;
+                const telNumber = stop.phone.split('/')[0].trim().replace(/\s/g, '');
+
+                item.innerHTML = `
+                    <div class="timeline-marker">${index + 1}</div>
+                    <div class="time-badge"><i class="far fa-clock"></i> ${stop.time}</div>
+                    <div class="student-name">${stop.name}</div>
+                    <div class="address-text">
+                        <i class="fas fa-map-marker-alt" style="color:#e74c3c;"></i>
+                        <span>${stop.address}</span>
+                    </div>
+                    <div class="phone-display">
+                        <i class="fas fa-phone"></i>
+                        <span>${stop.phone}</span>
+                    </div>
+                    <div class="action-row">
+                        <a href="${mapQuery}" target="_blank" rel="noopener" class="action-btn btn-map">
+                            <i class="fas fa-location-arrow"></i> Map
+                        </a>
+                        <a href="tel:${telNumber}" class="action-btn btn-call">
+                            <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active');
+                el.setAttribute('aria-selected', 'false');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            
+            const btns = document.querySelectorAll('.tab-btn');
+            const activeBtn = tabName === 'route1' ? btns[0] : btns[1];
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-selected', 'true');
+        }
+
+        function filterStudents() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase().trim();
+            const items = document.getElementsByClassName('timeline-item');
+            
+            Array.from(items).forEach(item => {
+                const name = item.getAttribute('data-name');
+                if (filter === '' || name.includes(filter)) {
+                    item.style.display = "";
+                    if (filter !== '' && name.includes(filter)) {
+                        item.classList.add('highlight');
+                        setTimeout(() => item.classList.remove('highlight'), 2500);
+                    }
+                } else {
+                    item.style.display = "none";
+                }
+            });
+
+            // Auto-switch to correct tab when searching
+            if (filter.length >= 2) {
+                const inRoute1 = route1Data.some(s => s.name.toLowerCase().includes(filter));
+                const inRoute2 = route2Data.some(s => s.name.toLowerCase().includes(filter));
+                
+                if (inRoute1 && !inRoute2) openTab('route1');
+                else if (!inRoute1 && inRoute2) openTab('route2');
+            }
+        }
+
+        function updateCountdown() {
+            const eventDate = new Date("December 7, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = '<div class="countdown-item"><span class="countdown-number">🎉</span><span class="countdown-label">Event Day!</span></div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `
+                <div class="countdown-item">
+                    <span class="countdown-number">${days}</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${hours}</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${minutes}</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number">${seconds}</span>
+                    <span class="countdown-label">Secs</span>
+                </div>
+            `;
+        }
+
+        function createSnowflakes() {
+            const container = document.getElementById('snow-container');
+            const snowflakeCount = window.innerWidth < 768 ? 12 : 20;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(snowflake);
+            }
+        }
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTimeline(route1Data, 'timeline-route1');
+            renderTimeline(route2Data, 'timeline-route2');
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            createSnowflakes();
+        });
+
+    </script>
+</body>
+</html>

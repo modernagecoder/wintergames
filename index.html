@@ -495,8 +495,8 @@
         /* Action Buttons - Full width on mobile */
         .action-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
             margin-top: 12px;
         }
 
@@ -527,6 +527,11 @@
         .btn-call {
             background: #fff3e0;
             color: #ef6c00;
+        }
+
+        .btn-whatsapp {
+            background: #dcf8c6;
+            color: #128C7E;
         }
 
         /* Vehicle Header inside Tab */
@@ -981,6 +986,9 @@
                         </a>
                         <a href="tel:${telNumber}" class="action-btn btn-call">
                             <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                        <a href="https://wa.me/91${telNumber}?text=${encodeURIComponent('Come ' + stop.name + ' we are waiting for you')}" target="_blank" rel="noopener" class="action-btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                     </div>
                 `;

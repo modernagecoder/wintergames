@@ -284,6 +284,94 @@
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
         }
 
+        /* Info Tabs Container */
+        .info-tabs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .info-tab-btn {
+            background: white;
+            border: none;
+            padding: 12px 8px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .info-tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-tab-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .info-tab-btn.food {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .info-tab-btn.spirit {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        }
+
+        .info-tab-btn.behavior {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        }
+
+        .info-tab-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-tab-label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .info-tab-btn.lunch {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+        }
+
+        /* Info Modal Styles */
+        .info-modal-body {
+            padding: 24px;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .info-modal-body p {
+            margin-bottom: 16px;
+        }
+
+        .info-modal-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-modal-body strong {
+            color: #d35400;
+        }
+
         /* Destination Details */
         .destination-grid {
             display: grid;
@@ -1036,6 +1124,29 @@
             </p>
         </div>
 
+        <!-- Important Instructions - Cute Tabs -->
+        <div class="info-tabs-container">
+            <button class="info-tab-btn food" onclick="openInfoModal('food')">
+                <div class="info-tab-icon">🍱</div>
+                <div class="info-tab-label">Food & Supplies</div>
+            </button>
+
+            <button class="info-tab-btn lunch" onclick="openInfoModal('lunch')">
+                <div class="info-tab-icon">�</div>
+                <div class="info-tab-label">Domino's Lunch</div>
+            </button>
+
+            <button class="info-tab-btn spirit" onclick="openInfoModal('spirit')">
+                <div class="info-tab-icon">🎯</div>
+                <div class="info-tab-label">Fun Spirit</div>
+            </button>
+
+            <button class="info-tab-btn behavior" onclick="openInfoModal('behavior')">
+                <div class="info-tab-icon">⚠️</div>
+                <div class="info-tab-label">Behaviour</div>
+            </button>
+        </div>
+
         <div class="dashboard">
             <!-- Sidebar: Event Details -->
             <aside>
@@ -1147,6 +1258,19 @@
         View Teams
     </button>
 
+    <!-- Info Modals -->
+    <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header" id="infoModalHeader">
+                <h2 id="infoModalTitle"></h2>
+                <button class="modal-close" onclick="closeInfoModal()">×</button>
+            </div>
+            <div class="info-modal-body" id="infoModalBody">
+                <!-- Content will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Team Modal -->
     <div class="modal-overlay" id="teamModal" onclick="closeTeamModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -1235,7 +1359,7 @@
         ];
 
         const firehawkers = [
-            { name: "Mihir Nanti Roy", captain: true },
+            { name: "Mihir Kanti Roy", captain: true },
             { name: "Anvay Surana" },
             { name: "Krish Shroff" },
             { name: "Aditya Kedia" },
@@ -1387,6 +1511,74 @@
             }
         }
 
+        // Info Modal Content
+        const infoContent = {
+            food: {
+                title: '🍱 Food & Supplies',
+                content: `
+                    <p>
+                        This entire turf tour is not just about sports — it is a <strong>picnic filled with fun, masti, and togetherness</strong>. During travelling and during our break sessions, we would love if every <strong> student could carry a lunchbox with something delicious prepared by their mom or any other favourite item made with love </strong>.
+                    </p>
+                    <p>
+                        These homemade treats will be enjoyed as <strong>snacks, breakfast, or refreshments during the games and breaks for energy</strong>. We will keep it as a beautiful sharing moment where everyone gets to taste each other's homemade food, enjoy the variety, refresh together, and build memories while enjoying the journey and the masti throughout the day.
+                    </p>
+                    <p style="font-weight:600;">
+                        💧 <strong>Don't forget:</strong> Students must carry a water bottle. A few students may also bring cricket balls and badminton equipment to share!
+                    </p>
+                `
+            },
+            lunch: {
+                title: '� Domisno\'s Lunch Party',
+                content: `
+                    <p>
+                        After an exciting morning of games and activities, we'll head to <strong>Domino's Pizza at Girish Park at 2:00 PM</strong> for a delicious lunch party together!
+                    </p>
+                    <p>
+                        This is a special treat for all students to enjoy hot, fresh pizzas and relax with friends. It's a perfect time to share stories from the games, laugh together, and recharge before heading home.
+                    </p>
+                    <p style="font-weight:600;">
+                        🍕 <strong>Note:</strong> The lunch is organized and included in the event. Just come with an appetite and enjoy the feast!
+                    </p>
+                `
+            },
+            spirit: {
+                title: '🎯 It\'s About Fun, Not Competition!',
+                content: `
+                    <p>
+                        We are going to the turf to <strong>enjoy, play games, experience a winter workout, create memories, meet friends, exchange thoughts, and connect with new people</strong>. This is not a competition. You do not have to "win" anything. Please do not get aggressive or treat it like a match where winning is everything. We are simply here to play, bond, and have a wonderful time together.
+                    </p>
+                `
+            },
+            behavior: {
+                title: '⚠️ Behaviour Guidelines',
+                content: `
+                    <p>
+                        Students, before we begin the Winter Games, please note a few important points. We expect everyone to <strong>maintain proper behaviour throughout the tour</strong>. Please follow instructions and avoid actions that may cause chaos. Do not hit your friends or run around in a way that forces others to chase you. This often leads to confusion, small fights, and unnecessary trouble. Enjoy yourselves, have fun, but do it responsibly. Be decent, respectful, and make sure your masti does not disturb or harm anyone.
+                    </p>
+                `
+            }
+        };
+
+        // Info Modal Functions
+        function openInfoModal(type) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('infoModalTitle');
+            const body = document.getElementById('infoModalBody');
+            
+            title.innerHTML = infoContent[type].title;
+            body.innerHTML = infoContent[type].content;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInfoModal(event) {
+            if (!event || event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+                document.getElementById('infoModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         // Team Modal Functions
         function openTeamModal() {
             document.getElementById('teamModal').classList.add('active');
@@ -1422,9 +1614,10 @@
             });
         }
 
-        // Close modal on Escape key
+        // Close modals on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                closeInfoModal();
                 closeTeamModal();
             }
         });

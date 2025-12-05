@@ -763,9 +763,229 @@
             }
         }
 
+        /* Team Button */
+        .team-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .team-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .team-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .teams-container {
+            display: grid;
+            gap: 24px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-card.thunderbolts {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .team-card.firehawkers {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .team-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .team-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-name {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .member-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+
+        .member-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .member-name {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            color: #2c3e50;
+            text-transform: capitalize;
+        }
+
+        .captain-badge {
+            background: #ffd700;
+            color: #2c3e50;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: auto;
+        }
+
         /* Print styles */
         @media print {
-            .snowflake, .search-container, .action-row {
+            .snowflake, .search-container, .action-row, .team-button {
                 display: none !important;
             }
             
@@ -921,6 +1141,47 @@
         <p>Made with ❤️ for the students</p>
     </footer>
 
+    <!-- Team Button -->
+    <button class="team-button" onclick="openTeamModal()">
+        <i class="fas fa-users"></i>
+        View Teams
+    </button>
+
+    <!-- Team Modal -->
+    <div class="modal-overlay" id="teamModal" onclick="closeTeamModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><i class="fas fa-trophy"></i> Winter Games Teams</h2>
+                <button class="modal-close" onclick="closeTeamModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="teams-container">
+                    <!-- Thunderbolts Team -->
+                    <div class="team-card thunderbolts">
+                        <div class="team-header">
+                            <div class="team-icon">⚡</div>
+                            <div class="team-name">Thunderbolts</div>
+                        </div>
+                        <div class="team-members" id="thunderbolts-members">
+                            <!-- JS will populate -->
+                        </div>
+                    </div>
+
+                    <!-- Firehawkers Team -->
+                    <div class="team-card firehawkers">
+                        <div class="team-header">
+                            <div class="team-icon">🔥</div>
+                            <div class="team-name">Firehawkers</div>
+                        </div>
+                        <div class="team-members" id="firehawkers-members">
+                            <!-- JS will populate -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- DATA ---
         const route1Data = [
@@ -952,6 +1213,42 @@
             { time: "08:45 AM", name: "Vihaan Tekriwal", address: "Shantikunj Apartment, 24/1 Onkarmal Jetia Road, Batai Talla Phari, Howrah-711103", phone: "9836301932" },
             { time: "09:25 AM", name: "Aarav Khemka", address: "5 Nawab Badruddin Street, near Afreen International Guest House/Md. Ali Park, Kolkata-700073", phone: "7439618388" },
             { time: "09:25 AM", name: "Ishaan Singh", address: "17 Tara Chand Dutta Street, Kolkata-700073", phone: "9831190087" }
+        ];
+
+        // Team Data
+        const thunderbolts = [
+            { name: "Shivam Khemka", captain: true },
+            { name: "Harshal Shyamsukha" },
+            { name: "Samarth Goel" },
+            { name: "Krishang Todi" },
+            { name: "Nikit Goyal" },
+            { name: "Aryansh Jajoo" },
+            { name: "Ayaan Zahir" },
+            { name: "Vivaan Madhogaria" },
+            { name: "Manav Khemka" },
+            { name: "Harshit Agarwal" },
+            { name: "Vihaan Tekriwal" },
+            { name: "Ishaan Singh" },
+            { name: "Ishan Dey" },
+            { name: "Tanush Garg" },
+            { name: "Tanish Dalmia" }
+        ];
+
+        const firehawkers = [
+            { name: "Mihir Nanti Roy", captain: true },
+            { name: "Anvay Surana" },
+            { name: "Krish Shroff" },
+            { name: "Aditya Kedia" },
+            { name: "Dhairya Sethia" },
+            { name: "Purab Nankani" },
+            { name: "Shaarav Wadhwa" },
+            { name: "Novoneer Bhattacharya" },
+            { name: "Devesh Jhawar" },
+            { name: "Aayush Daga" },
+            { name: "Shlok Agarwal" },
+            { name: "Aarav Khemka" },
+            { name: "Aarav Gupta" },
+            { name: "Rayan Dey" }
         ];
 
         // --- FUNCTIONS ---
@@ -1090,10 +1387,54 @@
             }
         }
 
+        // Team Modal Functions
+        function openTeamModal() {
+            document.getElementById('teamModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTeamModal(event) {
+            if (!event || event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+                document.getElementById('teamModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function getInitials(name) {
+            return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        function renderTeamMembers(teamData, elementId) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            
+            teamData.forEach(member => {
+                const memberDiv = document.createElement('div');
+                memberDiv.className = 'member-item';
+                
+                memberDiv.innerHTML = `
+                    <div class="member-avatar">${getInitials(member.name)}</div>
+                    <div class="member-name">${member.name}</div>
+                    ${member.captain ? '<span class="captain-badge">⭐ Captain</span>' : ''}
+                `;
+                
+                container.appendChild(memberDiv);
+            });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeTeamModal();
+            }
+        });
+
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
             renderTimeline(route1Data, 'timeline-route1');
             renderTimeline(route2Data, 'timeline-route2');
+            renderTeamMembers(thunderbolts, 'thunderbolts-members');
+            renderTeamMembers(firehawkers, 'firehawkers-members');
             updateCountdown();
             setInterval(updateCountdown, 1000);
             createSnowflakes();
